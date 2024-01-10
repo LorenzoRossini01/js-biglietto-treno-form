@@ -9,10 +9,11 @@ let discount;
 let ticketPrice;
 
 const passengerName = document.getElementById("passenger-name");
-const ticketDiscount = document.getElementById("ticket-discount");
+let ticketDiscount = document.getElementById("ticket-discount");
 const carriageNum = document.getElementById("carriage-number");
 const CpCode = document.getElementById("cp-code");
 const ticketCost = document.getElementById("ticket-cost");
+const ticketCard = document.getElementById("ticket-card");
 
 submitButton.addEventListener("click", function () {
   const userName = userNameInput.value;
@@ -26,20 +27,23 @@ submitButton.addEventListener("click", function () {
 
   basicPrice = userKm * basicCostperKm;
 
-  passengerName.innerText = userName;
-
-  if (userAge == "Minorenne") {
+  if (userAge === "minorenne") {
     discount = 0.2;
-    ticketPrice = basicPrice * discount;
     ticketDiscount.innerText = "-20% under 18";
-  } else if (userAge == "Over65") {
+  } else if (userAge === "over65") {
     discount = 0.4;
-    ticketPrice = basicPrice * discount;
     ticketDiscount.innerText = "-40% over 65";
   } else {
-    discount = 1;
-    ticketPrice = basicPrice * discount;
+    discount = 0;
     ticketDiscount.innerText = "Biglietto intero";
   }
+  ticketPrice = (basicPrice - basicPrice * discount).toFixed(2);
   console.log(ticketPrice);
+
+  passengerName.innerText = userName;
+  carriageNum.innerText = Math.floor(Math.random() * 9 + 1);
+  CpCode.innerText = Math.floor(Math.random() * 90000 + 1);
+  ticketCost.innerText = ticketPrice + "€";
+
+  ticketCard.className += "d-block";
 });
