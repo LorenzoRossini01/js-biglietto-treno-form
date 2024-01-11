@@ -42,7 +42,7 @@ submitButton.addEventListener("click", function () {
 
   passengerName.innerText = userName;
   carriageNum.innerText = Math.floor(Math.random() * 9 + 1);
-  CpCode.innerText = Math.floor(Math.random() * 90000 + 1);
+  CpCode.innerText = Math.floor(Math.random() * (99999 - 10000 + 1) + 10000);
   ticketCost.innerText = ticketPrice + "€";
 
   ticketCard.className += "d-block";
